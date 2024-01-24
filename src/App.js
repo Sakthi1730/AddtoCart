@@ -8,10 +8,20 @@ import { useState } from 'react';
 
 
 function App() {
-  const [value, setItem] = useState(0);
+  
+  
+  const [values, setItem] = useState(0);
   let addToCart = () => {
-    setItem(1 + value);
+    setItem(1 + values);
+    
+
   }
+  let removeFromCart = ()=>{
+    setItem(values-1);
+    
+  }
+
+
   
 
   const productList = [
@@ -78,7 +88,7 @@ function App() {
           <button className="btn btn-outline-dark" type="submit">
             <i className="bi-cart-fill me-1"></i>
             Cart
-            <span className="badge bg-dark text-white ms-1 rounded-pill">{value}</span>
+            <span className="badge bg-dark text-white ms-1 rounded-pill">{values}</span>
           </button>
         </div>
 
@@ -97,8 +107,8 @@ function App() {
 
         <div className='col-12'>
           <div className='row'>{
-            productList.map((product) => {
-              return <Card product={product} addToCart={addToCart} />
+            productList.map((product,index) => {
+              return <Card product={product} key={index} addToCart={addToCart} removeFromCart={removeFromCart} />
             })
           }
 
